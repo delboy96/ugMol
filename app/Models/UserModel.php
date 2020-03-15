@@ -4,51 +4,73 @@
 namespace App\Models;
 
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserModel
 {
-    public $name;
-    public $email;
-    public $password;
+    public string $name;
+    public string $email;
+    public string $password;
+    public const ADMINISTRATOR = 'Admin';
+    private string $table = 'users';
 
-    public function register()
+    /**
+     * @return int
+     */
+    public function register(): int
     {
-        return DB::table('users')
+        return DB::table($this->table)
             ->insertGetId([
                 'name' => $this->name,
                 'email' => $this->email,
-                'password' => md5($this->password),
+                'password' => Hash::make($this->password),
                 'role_id' => 2,
                 'active' => 1,
-                'created_at' => date("Y-m-d h:i:s"),
-                'updated_at' => date("Y-m-d h:i:s")
             ]);
     }
 
-    public function all()
+    /**
+     * @return Collection
+     */
+    public function all(): Collection
     {
-        return DB::table('users')
+        return DB::table($this->table)
             ->join("roles", "user.role_id", "=", "roles.id_r")
             ->select("users.*", "roles.name")
             ->get();
     }
 
-    public function show($id)
+    /**
+     * @param int $id
+     * @return Model|Builder|object|null
+     */
+    public function show(int $id): ?object
     {
-        return DB::table('users')
+        return DB::table($this->table)
             ->where("id_u", $id)->first();
     }
 
-    public function delete($id)
+    /**
+     * @param int $id
+     * @return int
+     */
+    public function delete(int $id): int
     {
-        return DB::table('users')
+        return DB::table($this->table)
             ->delete($id);
     }
 
-    public function update($id)
+    /**
+     * @param int $id
+     * @return int
+     */
+    public function update(int $id): int
     {
-        return DB::table('users')
+        return DB::table($this->table)
             ->where("id_u", $id)
             ->update([
                 'name' => $this->name,
@@ -59,14 +81,18 @@ class UserModel
             ]);
     }
 
-    public function login()
+
+    /**
+     * @param string $email
+     * @return Model|Builder|object|null
+     */
+    public function getUserByEmail(string $email) : ?object
     {
-        return DB::table('users')
+        return DB::table($this->table)
             ->join("roles", "users.role_id", "=", "roles.id_r")
             ->where([
-                ['email', '=', $this->email],
-                ['password', '=', md5($this->password)]
+                ['email', '=', $email],
             ])->select("users.*", "roles.name as role")
-            ->get()->first();
+            ->first();
     }
 }

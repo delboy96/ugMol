@@ -3,8 +3,8 @@
 @section('content')
     <div class="wrap-contact100">
 
-        <form action='#' method='post' class="contact100-form validate-form">
-
+        <form  action='#' method='post' class="contact100-form validate-form">
+        @csrf
 				<span class="contact100-form-title">
 					Registrujte se
 				</span>
@@ -30,7 +30,7 @@
 
             <label class="label-input100" for="email">Ponovo Unesite Vašu Šifru *</label>
             <div class="wrap-input100 validate-input" data-validate="Ponovite vašu šifru">
-                <input id="repass" class="input100" type="password" name="repass" placeholder="Šifra">
+                <input id="repass" class="input100" type="password" name="password_confirmation" placeholder="Šifra">
                 <span class="focus-input100"></span>
             </div>
 

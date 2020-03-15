@@ -28,7 +28,7 @@ Route::get("/register", "FrontEndController@registerForm");
 //Rute za log, reg i logout
 
 Route::post("/login", "AuthController@login");
-Route::post("/register", "AuthController@register");
+Route::post("/register", "AuthController@register")->name('/register');
 Route::get("/logout", "AuthController@logout");
 
 

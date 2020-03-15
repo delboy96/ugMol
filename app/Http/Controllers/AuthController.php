@@ -8,6 +8,8 @@ use App\Models\UserModel;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
@@ -18,20 +20,23 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request): RedirectResponse
     {
-
         $userModel = new UserModel();
-        $userModel->email = $request->get("email");
-        $userModel->password = $request->get("password");
-        $user = $userModel->login();
+        $email = $request->input('email');
+        $pass = $request->input('pass');
+        $user = $userModel->getUserByEmail($email);
 
-        if ($user) {
+        if ($user !== null) {
+            if(!Hash::check($pass, $user->pass)){
+                return redirect()->back()->with("message", "Šifra nije validna.");
+            }
             $request->session()->put('user', $user);
-            return $user->role == "Admin" ? redirect(route('/about')) : redirect(route('/index'));
+            return $user->role === $userModel::ADMINISTRATOR ? redirect(route('/about')) : redirect(route('/index'));
         } else {
             return redirect()->back()->with("message", "Parametri nisu validni.");
         }
 
     }
+
 
     /**
      * @param RegisterRequest $request
@@ -52,12 +57,11 @@ class AuthController extends Controller
             return redirect()->back()->with("message", "Serverska greška.");
         }
 
-
     }
 
     /**
      * @param Request $request
-     * @return RedirectResponse|\Illuminate\Routing\Redirector
+     * @return RedirectResponse|Redirector
      */
     public function logout(Request $request) : RedirectResponse
     {
