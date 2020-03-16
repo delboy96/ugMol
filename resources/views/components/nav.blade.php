@@ -25,17 +25,21 @@
         <div class="row align-items-center justify-content-center d-flex">
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li class="menu-active"><a href="/index">Početna</a></li>
+                    <li class="menu-active"><a href="{{ route('index') }}"> Početna </a></li>
 {{--                    <li><a href="/archive">Arhiva</a></li>--}}
                     {{--                    <li class="menu-has-children"><a href="">Blog</a>--}}
                     {{--                        <ul>--}}
                     {{--                            <li><a href="blog-details.html">Blog Details</a></li>--}}
                     {{--                        </ul>--}}
                     {{--                    </li>--}}
-                    <li><a href="/contact">Kontakt</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li style="padding-left: 4em;"><a href="/login">Login</a></li>
-                    <li><a href="/register">Registracija</a></li>
+                    <li><a href="{{ route('contact') }}"> Kontakt </a></li>
+                    <li><a href="{{ route('about') }}"> About </a></li>
+                    @if(session()->get('user'))
+                        <li style="padding-left: 4em;"><a href="{{ route('logout') }}"> Logout </a></li>
+                    @else
+                    <li style="padding-left: 4em;"><a href="/login"> Login </a></li>
+                    <li><a href="{{ route('register') }}">Registracija</a></li>
+                    @endif
                 </ul>
             </nav>
         </div>

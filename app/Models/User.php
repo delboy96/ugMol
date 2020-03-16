@@ -10,13 +10,13 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class UserModel
+class User
 {
-    public string $name;
-    public string $email;
-    public string $password;
     public const ADMINISTRATOR = 'Admin';
-    private string $table = 'users';
+    public $name;
+    public $email;
+    public $password;
+    private $table = 'users';
 
     /**
      * @return int
@@ -86,7 +86,7 @@ class UserModel
      * @param string $email
      * @return Model|Builder|object|null
      */
-    public function getUserByEmail(string $email) : ?object
+    public function getUserByEmail(string $email): ?object
     {
         return DB::table($this->table)
             ->join("roles", "users.role_id", "=", "roles.id_r")

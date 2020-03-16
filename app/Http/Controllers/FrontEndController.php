@@ -41,9 +41,9 @@ class FrontEndController extends Controller
     }
 
 
-    public function validateContact()
+    public function single()
     {
-        return view('pages.contact');
+        return view('pages.single');
     }
 
     /**

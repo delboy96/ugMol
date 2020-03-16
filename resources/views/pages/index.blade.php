@@ -1,5 +1,5 @@
 @extends("layout")
-
+@section('title', 'Mol u srcu')
 @section('content')
 @include('components.slider')
 <!-- Start main body Area -->

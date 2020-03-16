@@ -48,6 +48,11 @@ function contact(e) {
             },
             success: function(response) {
                 console.log("Poslato ajaxom.");
+                alert('Uspešno ste nas kontaktirali!');
+                // let output = "";
+                // output += `<li style="color:#00adf0">Uspešno ste nas kontaktirali!</li>`;
+                // document.querySelector("#errorsCon").innerHTML = output;
+
                 // window.location = "php/emails.php";
             },
             error: function(xhr, status, errorMsg) {

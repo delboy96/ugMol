@@ -19,16 +19,25 @@ Route::get('/', function () {
 
 //Rute za inicijalno prikazivanje stranica.
 
-Route::get('/index', 'FrontEndController@index');
-Route::get('/contact', 'FrontEndController@contactForm');
-Route::get('/about','FrontEndController@about');
-Route::get("/login", "FrontEndController@loginForm");
-Route::get("/register", "FrontEndController@registerForm");
+Route::get('/index', 'FrontEndController@index')->name('index');
+Route::get('/contact', 'FrontEndController@contactForm')->name('contact');
+Route::get('/about','FrontEndController@about')->name('about');
+Route::get("/login", "FrontEndController@loginForm")->name('login');
+Route::get("/register", "FrontEndController@registerForm")->name('register');
 
 //Rute za log, reg i logout
 
-Route::post("/login", "AuthController@login");
-Route::post("/register", "AuthController@register")->name('/register');
-Route::get("/logout", "AuthController@logout");
+Route::post("/login", "AuthController@login")->name('login');
+Route::post("/register", "AuthController@register")->name('register');
+Route::get("/logout", "AuthController@logout")->name('logout');
 
+//Post rute
+
+//na indexu gore treba latest() sa 3 poslednja posta
+//i svi postovi u sredini all()s
+Route::get('/posts/{id}', 'PostController@show');
+
+//Clanci
+
+//Najnovije (LATEST)
 

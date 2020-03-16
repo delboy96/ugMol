@@ -2,8 +2,8 @@
 @section('content')
     <div class="wrap-contact100">
 
-        <form action='#' method='post' class="contact100-form validate-form">
-
+        <form id="conForma" action="{{ route('contact') }}" method="POST" class="contact100-form validate-form">
+            @csrf
 				<span class="contact100-form-title">
 					Pošaljite Nam Poruku
 				</span>

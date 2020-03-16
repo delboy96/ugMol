@@ -17,7 +17,7 @@
     <!-- Site Title -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- csrf -->
-    <title>Mol u Srcu</title>
+    <title>@yield('title')</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500|Rubik:500" rel="stylesheet">
     <!--
