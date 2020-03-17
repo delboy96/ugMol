@@ -35,9 +35,11 @@ Route::get("/logout", "AuthController@logout")->name('logout');
 
 //na indexu gore treba latest() sa 3 poslednja posta
 //i svi postovi u sredini all()s
-Route::get('/posts/{id}', 'PostController@show');
+Route::get('/posts/{id}', 'PostsController@show');
 
-//Clanci
+//Članci
+Route::get('/clanak/{id}', 'ArticlesController@showArticle');
 
-//Najnovije (LATEST)
+//Vesti (LATEST)
+Route::get('/vest/{id}', 'ArticlesController@showNews');
 

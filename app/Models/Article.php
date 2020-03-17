@@ -1,18 +1,16 @@
 <?php
 
-
 namespace App\Models;
-
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class Article
 {
-    public string $title;
-    public string $body;
-    public string $img;
-    private string $table = 'articles';
+    public $title;
+    public $body;
+    public $img;
+    private $table = 'articles';
 
     /**
      * @return Collection
@@ -36,10 +34,9 @@ class Article
 
     /**
      * @param int $id
-     * @param string $type
      * @return object|null
      */
-    public function showArticle(int $id, string $type): ?object
+    public function showArticle(int $id): ?object
     {
         return DB::table($this->table)
             ->where([

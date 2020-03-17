@@ -24,92 +24,36 @@
             </div>
             <div class="jq-tab-content-wrapper">
                 <div class="jq-tab-content active" data-tab="1">
+                    @foreach($articles as $article)
                     <div class="single-popular-post d-flex flex-row">
                         <div class="popular-thumb">
-                            <img class="img-fluid" src="{{asset('assets/img/posts/carousel/stories1.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{URL::asset($article->img)}}" alt="">
                         </div>
                         <div class="popular-details">
-                            <h6><a href="">2nd Gen Smoke Alarm <br>
-                                    get up from sleep</a></h6>
-                            <p>September 14, 2018</p>
+                            <h6><a href="">{{$article->title}}</a></h6>
+                            <p>{{$article->date}}</p>
                         </div>
                     </div>
-                    <div class="single-popular-post d-flex flex-row">
-                        <div class="popular-thumb">
-                            <img class="img-fluid" src="{{asset('assets/img/posts/carousel/stories2.jpg')}}" alt="">
-                        </div>
-                        <div class="popular-details">
-                            <h6><a href="">2nd Gen Smoke Alarm <br>
-                                    get up from sleep</a></h6>
-                            <p>September 14, 2018</p>
-                        </div>
-                    </div>
-                    <div class="single-popular-post d-flex flex-row">
-                        <div class="popular-thumb">
-                            <img class="img-fluid" src="{{asset('assets/img/posts/carousel/stories3.jpg')}}" alt="">
-                        </div>
-                        <div class="popular-details">
-                            <h6><a href="">2nd Gen Smoke Alarm <br>
-                                    get up from sleep</a></h6>
-                            <p>September 14, 2018</p>
-                        </div>
-                    </div>
-                    <div class="single-popular-post d-flex flex-row">
-                        <div class="popular-thumb">
-                            <img class="img-fluid" src="{{asset('assets/img/posts/carousel/stories4.jpg')}}" alt="">
-                        </div>
-                        <div class="popular-details">
-                            <h6><a href="">2nd Gen Smoke Alarm <br>
-                                    get up from sleep</a></h6>
-                            <p>September 14, 2018</p>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
 
                 <div class="jq-tab-content dNone active" data-tab="2">
+                    @foreach($news as $n)
+                    <div class="single-popular-post d-flex flex-row">
+                        <div class="popular-thumb">
+                            <img class="img-fluid" src="{{URL::asset($n->img)}}" alt="">
+                        </div>
+                        <div class="popular-details">
+                            <h6><a href="">{{$n->title}} </a></h6>
+                            <p>{{$n->date}}</p>
+                        </div>
+                    </div>
+                    @endforeach
 
-                    <div class="single-popular-post d-flex flex-row">
-                        <div class="popular-thumb">
-                            <img class="img-fluid" src="{{asset('assets/img/posts/carousel/stories2.jpg')}}" alt="">
-                        </div>
-                        <div class="popular-details">
-                            <h6><a href="">2nd Gen Smoke Alarm <br>
-                                    get up from sleep</a></h6>
-                            <p>September 14, 2018</p>
-                        </div>
-                    </div>
-                    <div class="single-popular-post d-flex flex-row">
-                        <div class="popular-thumb">
-                            <img class="img-fluid" src="{{asset('assets/img/posts/carousel/stories3.jpg')}}" alt="">
-                        </div>
-                        <div class="popular-details">
-                            <h6><a href="">2nd Gen Smoke Alarm <br>
-                                    get up from sleep</a></h6>
-                            <p>September 14, 2018</p>
-                        </div>
-                    </div>
-                    <div class="single-popular-post d-flex flex-row">
-                        <div class="popular-thumb">
-                            <img class="img-fluid" src="{{asset('assets/img/posts/carousel/stories1.jpg')}}" alt="">
-                        </div>
-                        <div class="popular-details">
-                            <h6><a href="">2nd Gen Smoke Alarm <br>
-                                    get up from sleep</a></h6>
-                            <p>September 14, 2018</p>
-                        </div>
-                    </div>
-                    <div class="single-popular-post d-flex flex-row">
-                        <div class="popular-thumb">
-                            <img class="img-fluid" src="{{asset('assets/img/posts/carousel/stories4.jpg')}}" alt="">
-                        </div>
-                        <div class="popular-details">
-                            <h6><a href="">2nd Gen Smoke Alarm <br>
-                                    get up from sleep</a></h6>
-                            <p>September 14, 2018</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>

@@ -20,9 +20,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/contact', 'Api\ContactController@send')->name('contact');
 
+//Rute za post
+
+//Route::resource('posts', 'PostsController');
+//Route::apiResource('/posts', 'Api\PostsController');
+
+
+
+
+
 //Route::post('/login', 'Api\AuthController@login');
 //
 //Route::post('/register', 'Api\AuthController@register');
 
 
-Route::resource('posts', 'Api\PostsController');

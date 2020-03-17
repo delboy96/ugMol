@@ -10,11 +10,8 @@
 
             </div>
             <h4>Удружење грађана Мол у срцу / Udruženje građana Mol u srcu</h4>
-            {{--            <div class="col-lg-6 col-md-6 col-sm-6 search-trigger">--}}
-            {{--                <a href="#" class="search">--}}
-            {{--                    <i class="lnr lnr-magnifier" id="search"></i></a>--}}
-            {{--                </a>--}}
-            {{--            </div>--}}
+
+
         </div>
     </div>
 </section>
@@ -40,19 +37,23 @@
                     <li style="padding-left: 4em;"><a href="/login"> Login </a></li>
                     <li><a href="{{ route('register') }}">Registracija</a></li>
                     @endif
+                    <li style="padding-left: 4em;"><div class="col-lg-6 col-md-6 col-sm-6 search-trigger">
+                        <a href="#" class="search">
+                            <i class="lnr lnr-magnifier" id="search"></i></a>
+                    </div></li>
                 </ul>
             </nav>
         </div>
     </div>
 
-    {{--    <div class="search_input" id="search_input_box">--}}
-    {{--        <div class="container box_1170">--}}
-    {{--            <form class="d-flex justify-content-between">--}}
-    {{--                <input type="text" class="form-control" id="search_input" placeholder="Search Here">--}}
-    {{--                <button type="submit" class="btn"></button>--}}
-    {{--                <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>--}}
-    {{--            </form>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
+    <div class="search_input" id="search_input_box">
+        <div class="container box_1170">
+            <form class="d-flex justify-content-between">
+                <input type="text" class="form-control" id="search_input" placeholder="Search Here">
+                <button type="submit" class="btn"></button>
+                <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
+            </form>
+        </div>
+    </div>
 </header>
 <!-- End header Area -->

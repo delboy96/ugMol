@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\DB;
 
 class Post
 {
-    public string $title;
-    public string $body;
-    public string $image_id;
-    private string $table = 'posts';
+    public  $title;
+    public  $body;
+    public  $img_path;
+    private  $table = 'posts';
 
     /**
      * @return Collection
@@ -20,8 +20,7 @@ class Post
     public function all() : Collection
     {
         return DB::table($this->table)
-            ->join('images', 'posts.image_id', '=', 'images.id')
-            ->select('posts.*', 'images.id', 'images.path')
+//            ->join('images', 'posts.image_id', '=', 'images.id')
             ->get();
     }
 
@@ -32,22 +31,22 @@ class Post
     public function find($id) :?object
     {
         return DB::table($this->table)
-            ->join('images', 'posts.image_id', '=', 'images.id')
+//            ->join('images', 'posts.image_id', '=', 'images.id')
             ->where('posts.id', $id)
-            ->select('posts.*', 'images.path', 'images.id')
+//            ->select('posts.*', 'images.path', 'images.id')
             ->first();
     }
 
     /**
      * @return int
      */
-    public function save() : int
+    public function create() : int
     {
         return DB::table($this->table)
             ->insertGetId([
                 'title' => $this->title,
                 'body' => $this->body,
-                'image_id' => $this->image_id,
+                'img_path' => $this->img_path,
             ]);
     }
 
@@ -62,8 +61,8 @@ class Post
             'body' => $this->body,
 //            'updated_at' => date("Y-m-d H:i:s")
         ];
-        if ($this->image_id != null) {
-            $updateData['picture_id'] = $this->image_id;
+        if ($this->img_path != null) {
+            $updateData['img_path'] = $this->img_path;
         }
         return DB::table($this->table)
             ->where('id', $id)
@@ -86,8 +85,8 @@ class Post
     public function latest() : Collection
     {
         return DB::table($this->table)
-            ->join('images', 'posts.image_id', '=', 'images.id')
-            ->select('posts.*', 'images.path', 'images.id')
+//            ->join('images', 'posts.image_id', '=', 'images.id')
+//            ->select('posts.*', 'images.path', 'images.id')
             ->orderBy('posts.time', 'desc')
             ->get()->take(3);
     }

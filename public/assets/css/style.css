@@ -71,6 +71,24 @@
     bottom: 0;
     left: 0;
 }
+
+.single-post-item img{
+    width: 340px;
+    height: 450px;
+    object-fit: cover;
+}
+
+.popular-thumb img{
+    width: 100px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.main_blog_details img {
+    width: 750px;
+    height: 550px;
+    object-fit: cover;
+}
 /*html{*/
 /*    position: relative;*/
 /*    min-height: 100%;*/

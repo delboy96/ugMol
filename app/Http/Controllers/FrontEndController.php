@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class FrontEndController extends Controller
 {
+    private $data=[];
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +17,14 @@ class FrontEndController extends Controller
      */
     public function index() : View
     {
-        return view('pages.index');
+        $postModel = new Post();
+        $articleModel = new Article();
+        $this->data['posts'] = $postModel->all();
+        $this->data['slider'] = $postModel->latest();
+        $this->data['articles'] = $articleModel->allArticles();
+        $this->data['news'] = $articleModel->allNews();
+
+        return view('pages.index', $this->data);
     }
 
     /**
@@ -40,11 +50,6 @@ class FrontEndController extends Controller
         return view('pages.regForm');
     }
 
-
-    public function single()
-    {
-        return view('pages.single');
-    }
 
     /**
      * Show the form for creating a new resource.
