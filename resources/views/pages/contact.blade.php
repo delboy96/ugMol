@@ -1,12 +1,13 @@
 @extends('layoutForms')
+@section('title', 'Kontaktirajte admira')
 @section('content')
-    <div class="wrap-contact100">
 
-        <form id="conForma" action="{{ route('contact') }}" method="POST" class="contact100-form validate-form">
+    <div class="wrap-contact100">
+        <form id="conForma" class="contact100-form validate-form">
             @csrf
-				<span class="contact100-form-title">
-					Pošaljite Nam Poruku
-				</span>
+            <span class="contact100-form-title">
+                Pošaljite Nam Poruku
+            </span>
 
             <label class="label-input100" for="first-name">Vaše Ime*</label>
             <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Unesite vaše ime">
@@ -19,31 +20,26 @@
             </div>
 
             <label class="label-input100" for="email">Unesite Vaš Email *</label>
-            <div class="wrap-input100 validate-input" data-validate = "Unos Email-a je obavezan: ex@abc.xyz">
+            <div class="wrap-input100 validate-input" data-validate="Unos Email-a je obavezan: ex@abc.xyz">
                 <input id="email" class="input100" type="text" name="email" placeholder="Npr. example@email.com">
                 <span class="focus-input100"></span>
             </div>
 
-{{--            <label class="label-input100" for="phone">Enter phone number</label>--}}
-{{--            <div class="wrap-input100">--}}
-{{--                <input id="phone" class="input100" type="text" name="phone" placeholder="Npr. +1 800 000000">--}}
-{{--                <span class="focus-input100"></span>--}}
-{{--            </div>--}}
-
             <label class="label-input100" for="message">Poruka *</label>
-            <div class="wrap-input100 validate-input" data-validate = "Poruka je neophodna">
+            <div class="wrap-input100 validate-input" data-validate="Poruka je neophodna">
                 <textarea id="message" class="input100" name="message" placeholder="Napišite Nam Poruku..."></textarea>
                 <span class="focus-input100"></span>
             </div>
 
             <div class="container-contact100-form-btn">
-                <button type='submit' id='con-sub' class="contact100-form-btn">
+                <button id='con-sub' class="contact100-form-btn">
                     Pošaljite Poruku
                 </button>
             </div>
             <div id="errorsCon" class=''>
 
             </div>
+
         </form>
 
         <div class="contact100-more flex-col-c-m" style="background-image: url('{{asset("assets/img/zima.jpg")}}');">
@@ -96,8 +92,7 @@
             </div>
         </div>
     </div>
-</div>
 
-<div id="dropDownSelect1"></div>
+    <div id="dropDownSelect1"></div>
 @endsection
 

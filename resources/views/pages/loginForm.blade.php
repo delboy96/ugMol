@@ -16,6 +16,9 @@
             <div class="wrap-input100 validate-input" data-validate="Unos Email-a je obavezan: ex@abc.xyz">
                 <input id="email" class="input100" type="text" name="email" placeholder="Npr. example@email.com"/>
                 <span class="focus-input100"></span>
+                @error('email')
+                <p class="text-danger text-center">{{ $message }}</p>
+                @enderror
             </div>
 
 
@@ -23,6 +26,10 @@
             <div class="wrap-input100 validate-input" data-validate="Unesite vašu šifru">
                 <input id="pass" class="input100" type="password" name="password" placeholder="Šifra"/>
                 <span class=" focus-input100"></span>
+                @error('password')
+                    <p class="text-danger text-center">{{ $message }}</p>
+                @enderror
+
             </div>
 
             <div class="container-contact100-form-btn">
@@ -33,6 +40,7 @@
             <div id="errorsCon" class=''>
 
             </div>
+
         </form>
 
         <div class="contact100-more flex-col-c-m" style="background-image: url('{{asset("assets/img/zima.jpg")}}');">

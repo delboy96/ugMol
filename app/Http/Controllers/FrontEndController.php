@@ -24,7 +24,23 @@ class FrontEndController extends Controller
         $this->data['articles'] = $articleModel->allArticles();
         $this->data['news'] = $articleModel->allNews();
 
+//        $users->links('pages.index');
+
         return view('pages.index', $this->data);
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $model = new Post();
+        if($search != null){
+            $post = $model->where($search);
+            if (count ( $post ) > 0)
+                return view ( 'pages.search' )->withDetails  ( $post )->withQuery  ( $search );
+            else
+                return view ( 'pages.search' )->withMessage  ( 'No Posts found. Try to search again !' );
+        }
+        return redirect(route('index'));
     }
 
     /**
@@ -35,16 +51,25 @@ class FrontEndController extends Controller
         return view('pages.contact');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|View
+     */
     public function about()
     {
         return view('pages.about');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|View
+     */
     public function loginForm()
     {
         return view('pages.loginForm');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|View
+     */
     public function registerForm()
     {
         return view('pages.regForm');

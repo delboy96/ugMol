@@ -16,7 +16,7 @@
                             <div class="post-content d-flex justify-content-between">
                                 <div class="post-meta">
                                     <div class="c-desc">
-                                        <p><span class="lnr lnr-calendar-full"></span>{{$sl->time}}</p>
+                                        <p><span class="lnr lnr-calendar-full"></span>{{$sl->datum}}</p>
                                     </div>
                                 </div>
                                 <div class="details">

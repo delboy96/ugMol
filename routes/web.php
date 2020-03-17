@@ -1,6 +1,10 @@
 <?php
 
+use App\Models\Post;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\Console\Input\Input;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +37,6 @@ Route::get("/logout", "AuthController@logout")->name('logout');
 
 //Post rute
 
-//na indexu gore treba latest() sa 3 poslednja posta
-//i svi postovi u sredini all()s
 Route::get('/posts/{id}', 'PostsController@show');
 
 //Članci
@@ -42,4 +44,12 @@ Route::get('/clanak/{id}', 'ArticlesController@showArticle');
 
 //Vesti (LATEST)
 Route::get('/vest/{id}', 'ArticlesController@showNews');
+
+//Kontakt
+
+//Route::post('/contact', 'Api\ContactController@send')->name('contact');
+
+//Search ruta
+
+Route::any('/search', 'FrontEndController@search');
 

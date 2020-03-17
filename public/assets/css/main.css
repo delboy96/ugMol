@@ -3628,7 +3628,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 .blog-pagination .page-link {
     position: relative;
     display: block;
-    padding: 7px;
+    /*padding: 7px;*/
     margin-left: 10px;
     line-height: 1.25;
     color: #828bb2;

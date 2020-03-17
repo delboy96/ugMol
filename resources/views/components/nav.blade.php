@@ -18,7 +18,7 @@
 <!--================ End header top Area =================-->
 <!-- Start header Area -->
 <header id="header">
-    <div class="container box_1170 main-menu">
+    <div id="navMeni" class="container box_1170 main-menu">
         <div class="row align-items-center justify-content-center d-flex">
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
@@ -29,9 +29,10 @@
                     {{--                            <li><a href="blog-details.html">Blog Details</a></li>--}}
                     {{--                        </ul>--}}
                     {{--                    </li>--}}
-                    <li><a href="{{ route('contact') }}"> Kontakt </a></li>
                     <li><a href="{{ route('about') }}"> About </a></li>
-                    @if(session()->get('user'))
+                    <li><a href="{{ route('contact') }}"> Kontakt </a></li>
+                    @if (session()->has('user'))
+                        <span>{{ session('user')->name }}</span>
                         <li style="padding-left: 4em;"><a href="{{ route('logout') }}"> Logout </a></li>
                     @else
                     <li style="padding-left: 4em;"><a href="/login"> Login </a></li>
@@ -48,8 +49,9 @@
 
     <div class="search_input" id="search_input_box">
         <div class="container box_1170">
-            <form class="d-flex justify-content-between">
-                <input type="text" class="form-control" id="search_input" placeholder="Search Here">
+            <form action="/search" method="POST" class="d-flex justify-content-between">
+                @csrf
+                <input type="text" name="search" class="form-control" id="search_input" placeholder="Search Here">
                 <button type="submit" class="btn"></button>
                 <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
             </form>

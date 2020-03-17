@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -353,7 +352,62 @@
         }
 
 
-        =====================================================*/
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        =
+        *
+
+        /
         @media only screen and (-webkit-device-pixel-ratio: .75) {
             /* Put CSS for low density (ldpi) Android layouts in here */
         }
@@ -537,7 +591,7 @@
                                                                                 Poruka od: </h3>
                                                                             <div
                                                                                 style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
-                                                                                {{$data['name']}} &nbsp {{$data['surname']}}
+                                                                                {{$name}} &nbsp {{  $surname}}
                                                                             </div>
                                                                         </td>
                                                                     </tr>
@@ -554,7 +608,7 @@
                                                                                 Email pošiljaoca:</h3>
                                                                             <div
                                                                                 style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
-                                                                                {{$data['email']}}
+                                                                                {{ $email }}
                                                                             </div>
                                                                         </td>
                                                                     </tr>

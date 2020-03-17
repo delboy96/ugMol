@@ -24,8 +24,22 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', 'exists:users,email'],
             'password' => ['required', 'min:6']
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+          'email.required' => 'Email je obavezan.',
+          'email.email' => 'Email nije u dobrom formatu.',
+          'email.exists' => 'Email ne postoji.',
+          'password.required'=> 'Šifra je obavezna.',
+          'password.min'=> 'Šifra mora da se sastoji najmanje iz 6 karaktera.'
         ];
     }
 }

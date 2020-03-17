@@ -2,33 +2,34 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
+
 class Post
 {
-    public  $title;
-    public  $body;
-    public  $img_path;
-    private  $table = 'posts';
+    public $title;
+    public $body;
+    public $img_path;
+    private $table = 'posts';
 
     /**
-     * @return Collection
+     * @return Paginator
      */
-    public function all() : Collection
+    public function all(): Paginator
     {
-        return DB::table($this->table)
+        return DB::table($this->table)->paginate(6, ['*'], 'page');
 //            ->join('images', 'posts.image_id', '=', 'images.id')
-            ->get();
     }
 
     /**
      * @param $id
      * @return Model|Builder|object|null
      */
-    public function find($id) :?object
+    public function find($id): ?object
     {
         return DB::table($this->table)
 //            ->join('images', 'posts.image_id', '=', 'images.id')
@@ -37,10 +38,26 @@ class Post
             ->first();
     }
 
+    //where za search
+
+    /**
+     * @param string $search
+     * @return Model|Builder|object|null|Collection
+     */
+    public function where(string $search )
+    {
+        return DB::table($this->table)
+            ->where( 'title', 'LIKE' , '%' . $search . '%')
+            ->orWhere ( 'subtitle', 'LIKE', '%' . $search . '%' )
+            ->orWhere ( 'citat', 'LIKE', '%' . $search . '%' )
+            ->orWhere ( 'body', 'LIKE', '%' . $search . '%' )
+            ->get();
+    }
+
     /**
      * @return int
      */
-    public function create() : int
+    public function create(): int
     {
         return DB::table($this->table)
             ->insertGetId([
@@ -54,7 +71,7 @@ class Post
      * @param $id
      * @return int
      */
-    public function update($id) : int
+    public function update($id): int
     {
         $updateData = [
             'title' => $this->title,
@@ -73,7 +90,7 @@ class Post
      * @param $id
      * @return int
      */
-    public function delete($id) : int
+    public function delete($id): int
     {
         return DB::table($this->table)
             ->delete($id);
@@ -82,12 +99,12 @@ class Post
     /**
      * @return Collection
      */
-    public function latest() : Collection
+    public function latest(): Collection
     {
         return DB::table($this->table)
 //            ->join('images', 'posts.image_id', '=', 'images.id')
 //            ->select('posts.*', 'images.path', 'images.id')
-            ->orderBy('posts.time', 'desc')
+            ->orderBy('posts.datum', 'desc')
             ->get()->take(3);
     }
 }

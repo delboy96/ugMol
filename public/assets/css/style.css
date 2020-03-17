@@ -89,6 +89,11 @@
     height: 550px;
     object-fit: cover;
 }
+
+.alert-danger {
+    margin: 30px auto 0;
+    text-align: center;
+}
 /*html{*/
 /*    position: relative;*/
 /*    min-height: 100%;*/
