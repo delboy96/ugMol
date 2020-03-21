@@ -75,7 +75,7 @@ class User
             ->update([
                 'name' => $this->name,
                 'email' => $this->email,
-                'password' => md5($this->password),
+                'password' => Hash::make($this->password),
                 'role_id' => 2,
                 'active' => 1,
             ]);

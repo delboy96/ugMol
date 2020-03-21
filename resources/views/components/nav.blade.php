@@ -23,25 +23,24 @@
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
                     <li class="menu-active"><a href="{{ route('index') }}"> Početna </a></li>
-{{--                    <li><a href="/archive">Arhiva</a></li>--}}
-                    {{--                    <li class="menu-has-children"><a href="">Blog</a>--}}
-                    {{--                        <ul>--}}
-                    {{--                            <li><a href="blog-details.html">Blog Details</a></li>--}}
-                    {{--                        </ul>--}}
-                    {{--                    </li>--}}
                     <li><a href="{{ route('about') }}"> About </a></li>
                     <li><a href="{{ route('contact') }}"> Kontakt </a></li>
                     @if (session()->has('user'))
                         <span>{{ session('user')->name }}</span>
+                        @if (session('user')->role === 'Admin')
+                            <li style="padding-left: 4em;"><a href="{{ route('dashboard') }}"> Dashboard </a></li>
+                        @endif
                         <li style="padding-left: 4em;"><a href="{{ route('logout') }}"> Logout </a></li>
                     @else
-                    <li style="padding-left: 4em;"><a href="/login"> Login </a></li>
-                    <li><a href="{{ route('register') }}">Registracija</a></li>
+                        <li style="padding-left: 4em;"><a href="/login"> Login </a></li>
+                        <li><a href="{{ route('register') }}">Registracija</a></li>
                     @endif
-                    <li style="padding-left: 4em;"><div class="col-lg-6 col-md-6 col-sm-6 search-trigger">
-                        <a href="#" class="search">
-                            <i class="lnr lnr-magnifier" id="search"></i></a>
-                    </div></li>
+                    <li style="padding-left: 4em;">
+                        <div class="col-lg-6 col-md-6 col-sm-6 search-trigger">
+                            <a href="#" class="search">
+                                <i class="lnr lnr-magnifier" id="search"></i></a>
+                        </div>
+                    </li>
                 </ul>
             </nav>
         </div>

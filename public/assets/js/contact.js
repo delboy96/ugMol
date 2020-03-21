@@ -36,30 +36,31 @@ function contact(e) {
   }
 
   if (greske.length === 0) {
-    $.ajax({
-      type: "POST",
-      url: "/api/contact",
-      dataType: "text",
-      data: {
-        name: imePolje,
-        surname: prezimePolje,
-        email: mejlPolje,
-        message: messagePolje
-      },
-      success: function (response) {
-        console.log(response);
-        // alert('Uspešno ste nas kontaktirali!');
-        // let output = "";
-        // output += `<li style="color:#00adf0">Uspešno ste nas kontaktirali!</li>`;
-        // document.querySelector("#errorsCon").innerHTML = output;
-
-        // window.location = "php/emails.php";
-      },
-      error: function (xhr, status, errorMsg) {
-        let message = "Kod" + xhr.status + "je " + errorMsg;
-        console.log(message);
-      }
-    });
+    return true;
+    // $.ajax({
+    //   type: "POST",
+    //   url: "/api/contact",
+    //   dataType: "text",
+    //   data: {
+    //     name: imePolje,
+    //     surname: prezimePolje,
+    //     email: mejlPolje,
+    //     message: messagePolje
+    //   },
+    //   success: function (response) {
+    //     console.log(response);
+    //     // alert('Uspešno ste nas kontaktirali!');
+    //     // let output = "";
+    //     // output += `<li style="color:#00adf0">Uspešno ste nas kontaktirali!</li>`;
+    //     // document.querySelector("#errorsCon").innerHTML = output;
+    //
+    //     // window.location = "php/emails.php";
+    //   },
+    //   error: function (xhr, status, errorMsg) {
+    //     let message = "Kod" + xhr.status + "je " + errorMsg;
+    //     console.log(message);
+    //   }
+    // });
   } else {
     let output = "";
     for (greska of greske) {

@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\DB;
 class Post
 {
     public $title;
+    public $subtitle;
     public $body;
+    public $citat;
+    public $datum;
     public $img_path;
     private $table = 'posts';
 
@@ -24,6 +27,7 @@ class Post
         return DB::table($this->table)->paginate(6, ['*'], 'page');
 //            ->join('images', 'posts.image_id', '=', 'images.id')
     }
+
 
     /**
      * @param $id
@@ -55,29 +59,46 @@ class Post
     }
 
     /**
+     * @param $title
+     * @param $subtitle
+     * @param $body
+     * @param $citat
+     * @param $img_path
      * @return int
      */
-    public function create(): int
+    public function create($title, $subtitle, $body, $citat, $datum, $img_path): int
     {
+
+        $insertData = [
+            'title' => $title,
+            'subtitle' => $subtitle,
+            'body' => $body,
+            'citat' => $citat,
+            'datum' => $datum,
+        ];
+
+        if ($img_path != null) {
+            $insertData['img_path'] = $img_path;
+        }
+
         return DB::table($this->table)
-            ->insertGetId([
-                'title' => $this->title,
-                'body' => $this->body,
-                'img_path' => $this->img_path,
-            ]);
+            ->insertGetId($insertData);
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return int
      */
-    public function update($id): int
+    public function update(int $id): int
     {
         $updateData = [
             'title' => $this->title,
+            'subtitle' => $this->subtitle,
             'body' => $this->body,
-//            'updated_at' => date("Y-m-d H:i:s")
+            'citat' => $this->citat,
+            'datum' => $this->datum,
         ];
+
         if ($this->img_path != null) {
             $updateData['img_path'] = $this->img_path;
         }
@@ -87,13 +108,12 @@ class Post
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return int
      */
-    public function delete($id): int
+    public function delete(int $id): int
     {
-        return DB::table($this->table)
-            ->delete($id);
+        return DB::table($this->table)->delete($id);
     }
 
     /**
@@ -104,7 +124,7 @@ class Post
         return DB::table($this->table)
 //            ->join('images', 'posts.image_id', '=', 'images.id')
 //            ->select('posts.*', 'images.path', 'images.id')
-            ->orderBy('posts.datum', 'desc')
+            ->latest('posts.datum')
             ->get()->take(3);
     }
 }

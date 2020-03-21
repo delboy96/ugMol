@@ -17,7 +17,7 @@
                                             <img class="img-fluid" src="{{$post->img_path}}" alt="">
                                         </div>
                                         <div class="post-details">
-                                            <h4><a href="#">{{$post->title}}</a></h4>
+                                            <h4><a href="{{ route('post', $post->id) }}">{{$post->title}}</a></h4>
                                             {{--                                    <p>{{$post->body}}</p>--}}
                                             <div class="blog-meta">
                                                 <a href="#" class="m-gap"><span

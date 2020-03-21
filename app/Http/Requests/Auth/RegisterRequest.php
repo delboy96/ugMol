@@ -29,4 +29,22 @@ class RegisterRequest extends FormRequest
             'password' => ['required', 'confirmed', 'min:6'],
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Ime je obavezno.',
+            'name.min' => 'Ime mora imati najmanje 3 karaktera.',
+            'name.max' => 'Ime mora imati najviše 20 karaktera.',
+            'email.required' => 'Email je obavezan.',
+            'email.email' => 'Email nije u dobrom formatu.',
+            'email.unique' => 'Email već zauzet.',
+            'password.required'=> 'Šifra je obavezna.',
+            'password.min'=> 'Šifra mora da se sastoji najmanje iz 6 karaktera.',
+            'password.confirmed'=> 'Šifra mora biti ponovljena.'
+        ];
+    }
 }

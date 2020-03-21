@@ -30,6 +30,27 @@ class ContactRequest extends FormRequest
             'message' => ['required', 'max:255']
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Ime je obavezno.',
+            'name.alpha' => 'Za ime možete uneti samo slova.',
+            'name.min' => 'Ime mora imati najmanje 3 karaktera.',
+            'name.max' => 'Ime mora imati najviše 20 karaktera.',
+            'surname.required' => 'Prezime je obavezno.',
+            'surname.alpha' => 'Za prezime možete uneti samo slova.',
+            'surname.min' => 'Prezime mora imati najmanje 4 karaktera.',
+            'surname.max' => 'Prezime mora imati najviše 25 karaktera.',
+            'email.required' => 'Email je obavezan.',
+            'email.email' => 'Email nije u dobrom formatu.',
+            'message.required'=> 'Polje za poruku je obavezno.',
+            'message.max'=> 'Poruka ne može biti duža od 255 karaktera.',
+        ];
+    }
 }
 
 

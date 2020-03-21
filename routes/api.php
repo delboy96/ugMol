@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/contact', 'Api\ContactController@send')->name('contact');
+//Route::post('/contact', 'Api\ContactController@send')->name('contact');
 
 
 

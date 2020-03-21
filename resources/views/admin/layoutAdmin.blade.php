@@ -1,0 +1,5 @@
+@include('admin.components.headerA')
+@include('admin.components.sidebarA')
+@include('admin.components.navA')
+    @yield('content')
+@include('admin.components.footerA')

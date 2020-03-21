@@ -3,11 +3,14 @@
 @section('title', 'Login')
 
 @section('content')
-{{--    {{ dump($errors) }}--}}
     <div class="wrap-contact100">
-
         <form id="loginForm" action="{{ route('login') }}" method="POST" class="contact100-form validate-form">
             @csrf
+            @if(session('message'))
+                <div class="alert alert-success">
+                    <p class="text-center">{{ session('message') }}</p>
+                </div>
+            @endif
             <span class="contact100-form-title">
 					Ulogujte se
 				</span>
@@ -27,7 +30,7 @@
                 <input id="pass" class="input100" type="password" name="password" placeholder="Šifra"/>
                 <span class=" focus-input100"></span>
                 @error('password')
-                    <p class="text-danger text-center">{{ $message }}</p>
+                <p class="text-danger text-center">{{ $message }}</p>
                 @enderror
 
             </div>

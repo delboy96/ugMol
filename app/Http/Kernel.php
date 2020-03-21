@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\Authenticated;
 use App\Http\Middleware\CheckForMaintenanceMode;
@@ -84,6 +85,7 @@ class Kernel extends HttpKernel
         'signed' => ValidateSignature::class,
         'throttle' => ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
-        'authenticated' => Authenticated::class
+        'authenticated' => Authenticated::class,
+        'admin' => AdminMiddleware::class
     ];
 }

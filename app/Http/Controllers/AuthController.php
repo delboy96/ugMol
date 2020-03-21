@@ -31,7 +31,7 @@ class AuthController extends Controller
             }
             $request->session()->put('user', $user);
             return $user->role === $userModel::ADMINISTRATOR
-                ? redirect(route('about'))
+                ? redirect(route('dashboard'))
                 : redirect(route('index'));
         } else {
             return redirect()->back()->with("message", "Parametri nisu validni.");
@@ -70,6 +70,8 @@ class AuthController extends Controller
     public function logout(Request $request): RedirectResponse
     {
         $request->session()->forget('user');
+
+        session()->flash('message', 'Successfully logged out.');
 
         return redirect(route('login'));
     }

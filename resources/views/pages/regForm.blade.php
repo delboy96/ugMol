@@ -11,12 +11,18 @@
             <div class="wrap-input100 validate-input" data-validate="Unesite vaše ime ">
                 <input id="name" class="input100" type="text" name="name" placeholder="Ime">
                 <span class="focus-input100"></span>
+                @error('name')
+                <p class="text-danger text-center">{{ $message }}</p>
+                @enderror
             </div>
 
             <label class="label-input100" for="email">Unesite Vaš Email *</label>
             <div class="wrap-input100 validate-input" data-validate="Unos Email-a je obavezan: ex@abc.xyz">
                 <input id="email" class="input100" type="text" name="email" placeholder="Npr. example@email.com">
                 <span class="focus-input100"></span>
+                @error('email')
+                <p class="text-danger text-center">{{ $message }}</p>
+                @enderror
             </div>
 
 
@@ -24,12 +30,18 @@
             <div class="wrap-input100 validate-input" data-validate="Unesite vašu šifru">
                 <input id="pass" class="input100" type="password" name="password" placeholder="Šifra">
                 <span class="focus-input100"></span>
+                @error('password')
+                <p class="text-danger text-center">{{ $message }}</p>
+                @enderror
             </div>
 
             <label class="label-input100" for="email">Ponovo Unesite Vašu Šifru *</label>
             <div class="wrap-input100 validate-input" data-validate="Ponovite vašu šifru">
                 <label for="repass"></label><input id="repass" class="input100" type="password" name="password_confirmation" placeholder="Šifra">
                 <span class="focus-input100"></span>
+                @error('repassword')
+                <p class="text-danger text-center">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="container-contact100-form-btn">
@@ -39,15 +51,7 @@
 
             </div>
             <div id="errorsCon">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                
             </div>
 
         </form>
