@@ -19,11 +19,11 @@ class PostsController extends Controller
      *
      * @return JsonResponse
      */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        $Model = new Post();
+        $post = new Post();
 
-        return \response()->json($Model->all(), 200);
+        return response()->json($post->all($request->query('page')), Response::HTTP_OK);
     }
 
     /**

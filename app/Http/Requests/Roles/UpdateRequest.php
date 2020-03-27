@@ -13,7 +13,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,25 @@ class UpdateRequest extends FormRequest
      */
     public function rules()
     {
+        $rules = [
+            'id_r' => ['integer', 'exists:roles'],
+            'name' => ['required', 'min:4', 'max:155']
+        ];
+
+        return $rules;
+    }
+
+    /**
+     * @return array
+     */
+    public function messages(): array
+    {
         return [
-            //
+            'id_r.integer' => 'Id mora biti integer.',
+            'id_r.exists' => 'Id mora da postoji.',
+            'name.required' => 'Naziv je obavezan.',
+            'name.min' => 'Naziv mora imati najmanje 4 karaktera.',
+            'name.max' => 'Naziv može imati najviše 155 karaktera.'
         ];
     }
 }

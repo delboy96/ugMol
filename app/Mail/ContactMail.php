@@ -5,6 +5,7 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class ContactMail extends Mailable
 {
@@ -44,6 +45,7 @@ class ContactMail extends Mailable
         $this->surname = $surname;
         $this->email = $email;
         $this->message = $message;
+        Log::info('usao u mail');
     }
 
     /**

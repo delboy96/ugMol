@@ -14,7 +14,7 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="single-post-item">
                                         <div class="post-thumb">
-                                            <img class="img-fluid" src="{{$post->img_path}}" alt="">
+                                            <img class="img-fluid" src="{{$post->img}}" alt="">
                                         </div>
                                         <div class="post-details">
                                             <h4><a href="{{ route('post', $post->id) }}">{{$post->title}}</a></h4>

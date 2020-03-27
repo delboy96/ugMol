@@ -25,7 +25,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => ['required', 'min:3', 'max:20'],
-            'email' => ['required', 'email', 'unique:users'],
+            'email' => ['required', 'email', 'unique:Users'],
             'password' => ['required', 'confirmed', 'min:6'],
         ];
     }
@@ -44,7 +44,7 @@ class RegisterRequest extends FormRequest
             'email.unique' => 'Email već zauzet.',
             'password.required'=> 'Šifra je obavezna.',
             'password.min'=> 'Šifra mora da se sastoji najmanje iz 6 karaktera.',
-            'password.confirmed'=> 'Šifra mora biti ponovljena.'
+            'password.confirmed'=> 'Šifra mora biti ponovljena.',
         ];
     }
 }

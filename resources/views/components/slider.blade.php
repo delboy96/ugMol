@@ -8,7 +8,7 @@
                     @foreach($slider as $sl)
                     <div class="single-post-carousel">
                         <div class="post-thumb">
-                            <img class="img-fluid" src="{{$sl->img_path}}" alt="">
+                            <img class="img-fluid" src="{{$sl->img}}" alt="">
                         </div>
                         <div class="post-details">
                             <h2><a href="#">{{$sl->title}}<br>

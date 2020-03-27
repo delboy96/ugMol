@@ -4,6 +4,7 @@
 namespace App\Models;
 
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
@@ -16,6 +17,7 @@ class User
     public $name;
     public $email;
     public $password;
+    public $role_id;
     private $table = 'users';
 
     /**
@@ -28,20 +30,20 @@ class User
                 'name' => $this->name,
                 'email' => $this->email,
                 'password' => Hash::make($this->password),
-                'role_id' => 2,
+                'role_id' => $this->role_id ?? '2',
                 'active' => 1,
             ]);
     }
 
     /**
-     * @return Collection
+     * @return LengthAwarePaginator
      */
-    public function all(): Collection
+    public function all(): LengthAwarePaginator
     {
         return DB::table($this->table)
-            ->join("roles", "user.role_id", "=", "roles.id_r")
-            ->select("users.*", "roles.name")
-            ->get();
+            ->join("roles", "Users.role_id", "=", "roles.id_r")
+            ->select("Users.*", "roles.name as role")
+            ->paginate(10, ['*'], 'page');
     }
 
     /**
@@ -51,6 +53,8 @@ class User
     public function show(int $id): ?object
     {
         return DB::table($this->table)
+            ->join("roles", "Users.role_id", "=", "roles.id_r")
+            ->select("Users.*", "roles.name as role", "roles.id_r as idR")
             ->where("id_u", $id)->first();
     }
 
@@ -61,7 +65,8 @@ class User
     public function delete(int $id): int
     {
         return DB::table($this->table)
-            ->delete($id);
+            ->where('id_u', '=', $id)
+            ->delete();
     }
 
     /**
@@ -76,7 +81,7 @@ class User
                 'name' => $this->name,
                 'email' => $this->email,
                 'password' => Hash::make($this->password),
-                'role_id' => 2,
+                'role_id' => $this->role_id ?? '2',
                 'active' => 1,
             ]);
     }
@@ -89,10 +94,10 @@ class User
     public function getUserByEmail(string $email): ?object
     {
         return DB::table($this->table)
-            ->join("roles", "users.role_id", "=", "roles.id_r")
+            ->join("roles", "Users.role_id", "=", "roles.id_r")
             ->where([
                 ['email', '=', $email],
-            ])->select("users.*", "roles.name as role")
+            ])->select("Users.*", "roles.name as role")
             ->first();
     }
 }

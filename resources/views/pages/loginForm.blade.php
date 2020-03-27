@@ -7,8 +7,12 @@
         <form id="loginForm" action="{{ route('login') }}" method="POST" class="contact100-form validate-form">
             @csrf
             @if(session('message'))
-                <div class="alert alert-success">
+                <div id="poruka" class="alert alert-success">
                     <p class="text-center">{{ session('message') }}</p>
+                </div>
+            @elseif(session('error'))
+                <div id="poruka" class="alert alert-danger">
+                    <p class="text-center">{{ session('error') }}</p>
                 </div>
             @endif
             <span class="contact100-form-title">
@@ -46,11 +50,23 @@
 
         </form>
 
-        <div class="contact100-more flex-col-c-m" style="background-image: url('{{asset("assets/img/zima.jpg")}}');">
+        <div class="contact100-more" style="background-image: url('{{asset("assets/img/zima.jpg")}}');">
+            <div id='nav-menu'  class=" box_1170 main-menu">
+                <div class="row align-items-center justify-content-center d-flex">
+                    <nav id="nav-menu-container">
+                        <ul class="nav-menu">
+                            <li class="menu-active"><a href="{{route('index')}}">Početna</a></li>
+                            <li><a href="{{route('contact')}}">Kontakt</a></li>
+                            <li><a href="{{route('register')}}">Registracija</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div style="margin-top: 43%" class="flex-col-c-m">
 
-            <div class="dis-flex size1 p-b-47">
+                <div class="dis-flex size1 p-b-47">
 
-                <div class="flex-col size2">
+                  <div class="flex-col size2">
 						<span class="txt1 p-b-20">
 							Niste registrovani?
 						</span>
@@ -59,6 +75,7 @@
 							<a href="/register" class="genric-btn info-border circle"><h2 style="color:#00adf0">Registrujte se</h2></a>
 						</span>
 
+                  </div>
                 </div>
             </div>
         </div>

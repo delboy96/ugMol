@@ -11,12 +11,14 @@ use Illuminate\Support\Facades\DB;
 
 class Post
 {
+    public const DEFAULT_POST_IMAGE = 'assets/img/zima.jpg';
+
     public $title;
     public $subtitle;
     public $body;
     public $citat;
     public $datum;
-    public $img_path;
+    public $img;
     private $table = 'posts';
 
     /**
@@ -48,41 +50,33 @@ class Post
      * @param string $search
      * @return Model|Builder|object|null|Collection
      */
-    public function where(string $search )
+    public function where(string $search)
     {
         return DB::table($this->table)
-            ->where( 'title', 'LIKE' , '%' . $search . '%')
-            ->orWhere ( 'subtitle', 'LIKE', '%' . $search . '%' )
-            ->orWhere ( 'citat', 'LIKE', '%' . $search . '%' )
-            ->orWhere ( 'body', 'LIKE', '%' . $search . '%' )
-            ->get();
+            ->where('title', 'LIKE', '%' . $search . '%')
+            ->orWhere('subtitle', 'LIKE', '%' . $search . '%')
+            ->orWhere('citat', 'LIKE', '%' . $search . '%')
+            ->orWhere('body', 'LIKE', '%' . $search . '%')
+            ->paginate(4, ['*'], 'page');
     }
 
     /**
-     * @param $title
-     * @param $subtitle
-     * @param $body
-     * @param $citat
-     * @param $img_path
      * @return int
      */
-    public function create($title, $subtitle, $body, $citat, $datum, $img_path): int
+    public function create(): int
     {
 
-        $insertData = [
-            'title' => $title,
-            'subtitle' => $subtitle,
-            'body' => $body,
-            'citat' => $citat,
-            'datum' => $datum,
+        $updateData = [
+            'title' => $this->title,
+            'subtitle' => $this->subtitle,
+            'body' => $this->body,
+            'citat' => $this->citat,
+            'datum' => $this->datum,
+            'time' => now(),
+            'img' => $this->img ?? self::DEFAULT_POST_IMAGE
         ];
 
-        if ($img_path != null) {
-            $insertData['img_path'] = $img_path;
-        }
-
-        return DB::table($this->table)
-            ->insertGetId($insertData);
+        return DB::table($this->table)->insertGetId($updateData);
     }
 
     /**
@@ -97,11 +91,9 @@ class Post
             'body' => $this->body,
             'citat' => $this->citat,
             'datum' => $this->datum,
+            'img' => $this->img ?? self::DEFAULT_POST_IMAGE
         ];
 
-        if ($this->img_path != null) {
-            $updateData['img_path'] = $this->img_path;
-        }
         return DB::table($this->table)
             ->where('id', $id)
             ->update($updateData);

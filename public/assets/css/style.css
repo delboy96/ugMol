@@ -43,7 +43,7 @@
 }
 #nav-menu li a{
 
-    font-size: 22px;
+    font-size: 20px;
 }
 
 #errorsCon{
@@ -95,5 +95,12 @@
     text-align: center;
 }
 
+#poruka {
+    margin: 0px auto 2em auto;
+}
+
+#poruka p{
+    border:0px;
+}
 
 

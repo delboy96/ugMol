@@ -116,8 +116,8 @@ address {
 ol,
 ul,
 dl {
-  margin-top: 0;
-  margin-bottom: 1rem;
+    margin-top:0rem;
+    margin-bottom:0rem;
 }
 
 ol ol,
@@ -5465,11 +5465,10 @@ a.close.disabled {
 }
 
 .modal {
-  position: fixed;
+  /*position: fixed;*/
   top: 0;
   left: 0;
   z-index: 1050;
-  display: none;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -5629,7 +5628,7 @@ a.close.disabled {
 @media (min-width: 576px) {
   .modal-dialog {
     max-width: 500px;
-    margin: 10% auto;
+    margin: 4% auto;
   }
   .modal-dialog-scrollable {
     max-height: calc(100% - 3.5rem);

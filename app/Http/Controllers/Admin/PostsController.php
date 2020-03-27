@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Posts\CreateRequest;
+use App\Http\Requests\Posts\UpdateRequest;
 use App\Models\Article;
 use App\Models\Post;
+use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
@@ -17,12 +18,12 @@ use Illuminate\View\View;
 class PostsController extends Controller
 {
 
-    private $data=[];
+    private $data = [];
 
     public function index()
     {
-        $model = new Post();
-        $this->data['posts'] = $model->all();
+        $post = new Post();
+        $this->data['posts'] = $post->all();
 
         return view('admin.posts', $this->data);
     }
@@ -30,16 +31,16 @@ class PostsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Factory|View
      */
     public function show($id)
     {
-        $postModel = new Post();
-        $articleModel = new Article();
-        $this->data['post'] = $postModel->find($id);
-        $this->data['articles'] = $articleModel->allArticles();
-        $this->data['news'] = $articleModel->allNews();
+        $post = new Post();
+        $article = new Article();
+        $this->data['post'] = $post->find($id);
+        $this->data['articles'] = $article->allArticles();
+        $this->data['news'] = $article->allNews();
 
         return view('pages.single', $this->data);
     }
@@ -47,7 +48,7 @@ class PostsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function create()
     {
@@ -57,28 +58,36 @@ class PostsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param CreateRequest $request
      * @return RedirectResponse|Redirector
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        //
-        $model = new Post();
+        $post = new Post();
 
-        $title= $request['title'];
-        $subtitle= $request['subtitle'];
-        $body= $request['body'];
-        $citat= $request['citat'];
-        $datum=$request['datum'];
-        $img_path= $request['img_path'];
+        if ($request->hasFile('img')) {
+            // Upload slike
+            $file = $request->file('img');
+            $directory = public_path("assets/img/posts/");
+            $fileName = time() . "_" . $file->getClientOriginalName();
+            $file->move($directory, $fileName);
+            $post->img = "assets/img/posts/" . $fileName;
+        }
 
+        $post->title = $request->input('title');
+        $post->subtitle = $request->input('subtitle');
+        $post->body = $request->input('body');
+        $post->citat = $request->input('citat');
+        $post->datum = $request->input('datum');
         try {
-            $model->create($title, $subtitle, $body, $citat, $datum, $img_path);
-
-            return redirect(route("posts.index"))->with("Uspeh!", "Uspešno dodat događaj!");
+            if ($post->create()) {
+                return redirect(route("posts.index"))->with("message", "Uspešno dodat događaj!");
+            } else {
+                return redirect()->back()->with("error", "Desila se greška, događaj nije dodat.");
+            }
         } catch (QueryException $e) {
-//            Log::error($e->getMessage());
-            return redirect()->back()->with("Greška.", "Desila se greška, pokušajte ponovo.");
+            Log::error($e->getMessage());
+            return redirect()->back()->with("error", "Desila se greška, pokušajte ponovo.");
         }
     }
 
@@ -90,35 +99,59 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        $model = new Post();
-        $this->data['post'] = $model->find($id);
+        $post = new Post();
+        $this->data['post'] = $post->find($id);
 
         return view('admin.components.Posts.updateForm', $this->data);
     }
 
     /**
+     * Show the form for deleting the specified resource.
+     *
+     * @param $id
+     * @return Factory|View
+     */
+    public function delete($id)
+    {
+        $post = new Post();
+        $this->data['post'] = $post->find($id);
+
+        return view('admin.components.Posts.deleteForm', $this->data);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param UpdateRequest $request
      * @param int $id
      * @return RedirectResponse|Redirector
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        $model = new Post();
-        $model->title = $request->input('title');
-        $model->subtitle = $request->input('subtitle');
-        $model->body = $request->input('body');
-        $model->citat = $request->input('citat');
-        $model->datum = $request->input('datum');
-        $model->img_path = $request->input('img_path');
-        try {
-            $model->update($id);
+        $post = new Post();
 
-            return redirect()->back()->with("Uspeh!", "Uspešno izmenjen događaj!");
+        if ($request->hasFile('img')) {
+            // Upload slike
+            $file = $request->file('img');
+            $directory = public_path("assets/img/posts/");
+            $fileName = time() . "_" . $file->getClientOriginalName();
+            $file->move($directory, $fileName);
+            $post->img = "assets/img/posts/" . $fileName;
+        }
+
+        $post->title = $request->input('title');
+        $post->subtitle = $request->input('subtitle');
+        $post->body = $request->input('body');
+        $post->citat = $request->input('citat');
+        $post->datum = $request->input('datum');
+        try {
+            $post->update($id);
+
+            return redirect(route("posts.index"))->with("message", "Uspešno izmenjen događaj!");
+//            return redirect()->back()->with("Uspeh!", "Uspešno izmenjen događaj!");
         } catch (QueryException $e) {
 //            Log::error($e->getMessage());
-            return redirect()->back()->with("Greška.", "Desila se greška, pokušajte ponovo.");
+            return redirect()->back()->with("error", "Desila se greška, događaj nije izmenjen.");
         }
     }
 
@@ -131,13 +164,15 @@ class PostsController extends Controller
     public function destroy($id)
     {
         try {
-            $model = new Post();
-            $model->delete($id);
-            return redirect()->back()->with("Uspeh!", "Uspešno ste obrisali događaj!");
-        } catch (\Exception $e)
-        {
+            $post = new Post();
+            if ($post->delete($id)) {
+                return redirect(route("posts.index"))->with("message", "Uspešno ste obrisali događaj!");
+            } else {
+                return redirect()->back()->with("error", "Došlo je do greške, događaj nije obrisan.");
+            }
+        } catch (Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->back()->with("Greška.", "Došlo je do greške, pokušajte ponovo.");
+            return redirect()->back()->with("error", "Došlo je do greške, pokušajte ponovo.");
         }
     }
 }

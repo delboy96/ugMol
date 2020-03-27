@@ -1,26 +1,35 @@
 @extends('layoutForms')
-@section('title', 'Kontaktirajte admira')
+@section('title', 'Kontaktirajte admina')
 @section('content')
 
     <div class="wrap-contact100">
-        <form id="conForma" action="{{route('contact')}}" method="POST" class="contact100-form validate-form">
+        <form id="conForma" action="{{ route('contact-email') }}" method="POST" class="contact100-form validate-form">
             @csrf
+            @if(session('message'))
+                <div id="poruka" class="alert alert-success">
+                    <p class="text-center">{{ session('message') }}</p>
+                </div>
+            @elseif(session('error'))
+                <div id="poruka" class="alert alert-danger">
+                    <p class="text-center">{{ session('error') }}</p>
+                </div>
+            @endif
             <span class="contact100-form-title">
                 Pošaljite Nam Poruku
             </span>
 
-            <label class="label-input100" for="first-name">Vaše Ime*</label>
+            <label class="label-input100" for="name">Vaše Ime*</label>
             <div class="wrap-input100  validate-input" data-validate="Unesite vaše ime">
-                <input id="first-name" class="input100" type="text" name="first-name" placeholder="Ime">
+                <input id="name" class="input100" type="text" name="name" placeholder="Ime">
                 <span class="focus-input100"></span>
                 @error('name')
                 <p class="text-danger text-center">{{ $message }}</p>
                 @enderror
             </div>
 
-            <label class="label-input100" for="last-name">Vaše Prezime*</label>
+            <label class="label-input100" for="surname">Vaše Prezime*</label>
             <div class="wrap-input100  validate-input" data-validate="Unesite vaše prezime">
-                <input id="last-name" class="input100" type="text" name="last-name" placeholder="Prezime">
+                <input id="surname" class="input100" type="text" name="surname" placeholder="Prezime">
                 <span class="focus-input100"></span>
                 @error('surname')
                 <p class="text-danger text-center">{{ $message }}</p>
@@ -53,57 +62,70 @@
             <div id="errorsCon" class=''>
 
             </div>
-
         </form>
 
-        <div class="contact100-more flex-col-c-m" style="background-image: url('{{asset("assets/img/zima.jpg")}}');">
-            <div class="flex-w size1 p-b-47">
-                <div class="txt1 p-r-25">
-                    <span class="lnr lnr-map-marker"></span>
+        <div class="contact100-more" style="background-image: url('{{asset("assets/img/zima.jpg")}}');">
+            <div id='nav-menu'  class=" box_1170 main-menu">
+                <div class="row align-items-center justify-content-center d-flex">
+                    <nav id="nav-menu-container">
+                        <ul class="nav-menu">
+                            <li class="menu-active"><a href="{{route('index')}}">Početna</a></li>
+                            <li><a href="{{route('login')}}">Login</a></li>
+                            <li><a href="{{route('register')}}">Registracija</a></li>
+                        </ul>
+                    </nav>
                 </div>
+            </div>
+            <div style="margin-top: 43%" class="flex-col-c-m">
+                <div class="flex-w size1 p-b-47">
+                    <div class="txt1 p-r-25">
+                        <span class="lnr lnr-map-marker"></span>
+                    </div>
 
-                <div class="flex-col size2">
+                    <div class="flex-col size2">
 						<span class="txt1 p-b-20">
 							Adresa
 						</span>
 
-                    <span class="txt2">
+                        <span class="txt2">
 							Mol, 24435, Ada, Srbija
 						</span>
-                </div>
-            </div>
-
-            <div class="dis-flex size1 p-b-47">
-                <div class="txt1 p-r-25">
-                    <span class="lnr lnr-phone-handset"></span>
+                    </div>
                 </div>
 
-                <div class="flex-col size2">
+                <div class="dis-flex size1 p-b-47">
+                    <div class="txt1 p-r-25">
+                        <span class="lnr lnr-phone-handset"></span>
+                    </div>
+
+                    <div class="flex-col size2">
 						<span class="txt1 p-b-20">
 							Pozovite Nas
 						</span>
 
-                    <span class="txt3">
+                        <span class="txt3">
 							+381 800 1236879
 						</span>
-                </div>
-            </div>
-
-            <div class="dis-flex size1 p-b-47">
-                <div class="txt1 p-r-25">
-                    <span class="lnr lnr-envelope"></span>
+                    </div>
                 </div>
 
-                <div class="flex-col size2">
+                <div class="dis-flex size1 p-b-47">
+                    <div class="txt1 p-r-25">
+                        <span class="lnr lnr-envelope"></span>
+                    </div>
+
+                    <div class="flex-col size2">
 						<span class="txt1 p-b-20">
 							Email
 						</span>
 
-                    <span class="txt3">
+                        <span class="txt3">
 							contact@example.com
 					</span>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 

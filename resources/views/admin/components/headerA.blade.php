@@ -16,9 +16,16 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('admin/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{asset('admin/css/style.css')}}" rel="stylesheet">
 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"  type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"  type="text/javascript"></script>
+{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>--}}
+
+{{--    <script src="{{asset('admin/vendor/jquery/jquery.min.js')}}"></script>--}}
+    <script src="{{asset('admin/js/main.js')}}"></script>
 </head>
 <body id="page-top">
-
 <!-- Page Wrapper -->
 <div id="wrapper">

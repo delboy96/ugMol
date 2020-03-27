@@ -30,7 +30,7 @@
                             <img class="img-fluid" src="{{URL::asset($article->img)}}" alt="">
                         </div>
                         <div class="popular-details">
-                            <h6><a href="">{{$article->title}}</a></h6>
+                            <h6><a href="{{route('clanak', $article->id)}}">{{$article->title}}</a></h6>
                             <p>{{$article->date}}</p>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                             <img class="img-fluid" src="{{URL::asset($n->img)}}" alt="">
                         </div>
                         <div class="popular-details">
-                            <h6><a href="">{{$n->title}} </a></h6>
+                            <h6><a href="{{route('vest', $n->id)}}">{{$n->title}} </a></h6>
                             <p>{{$n->date}}</p>
                         </div>
                     </div>

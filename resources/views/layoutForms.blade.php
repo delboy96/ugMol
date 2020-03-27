@@ -1,5 +1,5 @@
 @include('components.forms.headerForms')
-@include('components.forms.navForms')
+{{--@include('components.forms.navForms')--}}
 
 @yield('content')
 

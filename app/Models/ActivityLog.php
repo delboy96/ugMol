@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -23,32 +24,30 @@ class ActivityLog
             ->insert([
                 "user_id" => $userID,
                 "activity" => $activity,
-                "date" => date('Y-m-d'),
-                "time" => date('H:i:s')
+                "date" => now()
             ]);
     }
 
     /**
-     * @return Collection
+     * @return LengthAwarePaginator
      */
-    public function getActivity(): Collection
+    public function getActivity(): LengthAwarePaginator
     {
         return DB::table($this->table)
-            ->join('users AS u', 'a.user_id', '=', 'u.id_u')
-            ->get();
+            ->paginate('10', ['*'],'page');
     }
 
     /**
      * @param string $from
      * @param string $to
-     * @return Collection
+     * @return LengthAwarePaginator|Collection
      */
-    public function activityDate(string $from, string $to): Collection
+    public function activityDate(string $from, string $to)
     {
         return DB::table($this->table)
             ->where('date', '>=', $from)
             ->where('date', '<=', $to)
-            ->get();
+            ->paginate('10', ['*'],'page');
     }
 
 }

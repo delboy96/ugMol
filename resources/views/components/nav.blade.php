@@ -7,11 +7,8 @@
                 <a href="/index" class="logo">
                     <img src="{{asset('assets/img/logo.png')}}" alt="">
                 </a>
-
             </div>
             <h4>Удружење грађана Мол у срцу / Udruženje građana Mol u srcu</h4>
-
-
         </div>
     </div>
 </section>
@@ -28,7 +25,7 @@
                     @if (session()->has('user'))
                         <span>{{ session('user')->name }}</span>
                         @if (session('user')->role === 'Admin')
-                            <li style="padding-left: 4em;"><a href="{{ route('dashboard') }}"> Dashboard </a></li>
+                            <li style="padding-left: 4em;"><a href="{{ route('dashboard') }}"> Admin </a></li>
                         @endif
                         <li style="padding-left: 4em;"><a href="{{ route('logout') }}"> Logout </a></li>
                     @else
@@ -48,9 +45,10 @@
 
     <div class="search_input" id="search_input_box">
         <div class="container box_1170">
-            <form action="/search" method="POST" class="d-flex justify-content-between">
+            <form action="{{route('search')}}" method="POST" class="d-flex justify-content-between">
                 @csrf
-                <input type="text" name="search" class="form-control" id="search_input" placeholder="Search Here">
+                <input type="text" name="search" class="form-control" id="search_input" placeholder="Search Here"/>
+                <input name="previousSearch" type="hidden" value="{{ $query ?? null }}"/>
                 <button type="submit" class="btn"></button>
                 <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
             </form>

@@ -5,6 +5,15 @@
     <div class="wrap-contact100">
         <form id="regForma" action="{{ route('register') }}" method="POST" class="contact100-form validate-form">
             @csrf
+            @if(session('message'))
+                <div id="poruka" class="alert alert-success">
+                    <p class="text-center">{{ session('message') }}</p>
+                </div>
+            @elseif(session('error'))
+                <div id="poruka" class="alert alert-danger">
+                    <p class="text-center">{{ session('error') }}</p>
+                </div>
+            @endif
             <span class="contact100-form-title">Registrujte se</span>
 
             <label class="label-input100" for="name">Vaše Ime *</label>
@@ -51,7 +60,7 @@
 
             </div>
             <div id="errorsCon">
-                
+
             </div>
 
         </form>
