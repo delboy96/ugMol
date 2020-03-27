@@ -8,10 +8,10 @@
                     @foreach($slider as $sl)
                     <div class="single-post-carousel">
                         <div class="post-thumb">
-                            <img class="img-fluid" src="{{$sl->img}}" alt="">
+                            <img class="img-fluid" src="{{asset($sl->img)}}" alt="">
                         </div>
                         <div class="post-details">
-                            <h2><a href="#">{{$sl->title}}<br>
+                            <h2><a href="{{route('posts.show', $sl->id)}}">{{$sl->title}}<br>
                                 </a></h2>
                             <div class="post-content d-flex justify-content-between">
                                 <div class="post-meta">

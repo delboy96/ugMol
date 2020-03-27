@@ -24,12 +24,12 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             DB::table('Users')->insert([
                 'name' => $this->faker->name,
                 'email' => $this->faker->safeEmail,
                 'password' => Hash::make('password'),
-                'role_id' => $this->faker->boolean ? 1 : 2,
+                'role_id' => 2,
                 'active' => $this->faker->boolean ? 1 : 0,
             ]);
         }

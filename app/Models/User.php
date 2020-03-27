@@ -100,4 +100,12 @@ class User
             ])->select("Users.*", "roles.name as role")
             ->first();
     }
+
+    /**
+     * @return int
+     */
+    public function totalUsers()
+    {
+        return DB::table($this->table)->count();
+    }
 }

@@ -68,7 +68,6 @@
 //           <td>${post.body}</td>
 //           <td>${post.citat}</td>
 //           <td>${post.datum}</td>
-//           <td>${post.img_path}</td>
 //           <td class="align-middle">
 //                <a data-id="${post.id}" class="edit ">
 //              <i class="material-icons" data-toggle="tooltip" title="Izmeni">&#xE254;</i>

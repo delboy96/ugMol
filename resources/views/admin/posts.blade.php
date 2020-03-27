@@ -74,7 +74,7 @@
                                 <td style="width: 30%">{{ $post->body }}</td>
                                 <td>{{ $post->citat }}</td>
                                 <td>{{ $post->datum }}</td>
-                                <td>{{ $post->img }}</td>
+                                <td >{{ $post->img }}</td>
 {{--                                <td>{{ $post->time }}</td>--}}
                                 <td>{{ Carbon\Carbon::parse($post->time)->diffForHumans() }}</td>
                                 <td class="align-middle">

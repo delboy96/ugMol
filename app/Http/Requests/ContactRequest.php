@@ -26,8 +26,8 @@ class ContactRequest extends FormRequest
         return [
             'name' => ['required', 'min:3', 'alpha', 'max:20'],
             'surname' => ['required', 'min:4', 'alpha', 'max:25'],
-            'emails' => ['required', 'email'],
-            'message' => ['required', 'max:255']
+            'email' => ['required', 'email'],
+            'body' => ['required', 'max:255']
         ];
     }
 
@@ -47,8 +47,8 @@ class ContactRequest extends FormRequest
             'surname.max' => 'Prezime mora imati najviše 25 karaktera.',
             'email.required' => 'Email je obavezan.',
             'email.email' => 'Email nije u dobrom formatu.',
-            'message.required'=> 'Polje za poruku je obavezno.',
-            'message.max'=> 'Poruka ne može biti duža od 255 karaktera.',
+            'body.required'=> 'Polje za poruku je obavezno.',
+            'body.max'=> 'Poruka ne može biti duža od 255 karaktera.',
         ];
     }
 }

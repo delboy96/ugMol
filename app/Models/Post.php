@@ -119,4 +119,12 @@ class Post
             ->latest('posts.datum')
             ->get()->take(3);
     }
+
+    /**
+     * @return int
+     */
+    public function totalPosts()
+    {
+        return DB::table($this->table)->count();
+    }
 }

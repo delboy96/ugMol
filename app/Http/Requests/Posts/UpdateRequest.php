@@ -57,7 +57,7 @@ class UpdateRequest extends FormRequest
             'body.max' => 'Sadržaj može imati najviše 255 karaktera.',
             'citat.max' => 'Citat može imati najviše 255 karaktera.',
             'datum.required' => 'Datum je obavezan.',
-            'img_path.max' => 'Putanja slike može imati najviše 255 karaktera.',
+            'img.max' => 'Putanja slike može imati najviše 255 karaktera.',
             'id.exists' => 'Id mora da postoji.',
             'id.integer' => 'Id mora biti integer.',
             'img.image' => 'Slika mora biti u formatu slike.',

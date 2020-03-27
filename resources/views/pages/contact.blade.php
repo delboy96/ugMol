@@ -1,7 +1,8 @@
 @extends('layoutForms')
-@section('title', 'Kontaktirajte admina')
-@section('content')
 
+@section('title', 'Kontaktirajte admina')
+
+@section('content')
     <div class="wrap-contact100">
         <form id="conForma" action="{{ route('contact-email') }}" method="POST" class="contact100-form validate-form">
             @csrf
@@ -47,9 +48,9 @@
 
             <label class="label-input100" for="message">Poruka *</label>
             <div class="wrap-input100 validate-input" data-validate="Poruka je neophodna">
-                <textarea id="message" class="input100" name="message" placeholder="Napišite Nam Poruku..."></textarea>
+                <textarea id="body" class="input100" name="body" placeholder="Napišite Nam Poruku..."></textarea>
                 <span class="focus-input100"></span>
-                @error('message')
+                @error('body')
                 <p class="text-danger text-center">{{ $message }}</p>
                 @enderror
             </div>
@@ -65,7 +66,7 @@
         </form>
 
         <div class="contact100-more" style="background-image: url('{{asset("assets/img/zima.jpg")}}');">
-            <div id='nav-menu'  class=" box_1170 main-menu">
+            <div id='nav-menu' class=" box_1170 main-menu">
                 <div class="row align-items-center justify-content-center d-flex">
                     <nav id="nav-menu-container">
                         <ul class="nav-menu">

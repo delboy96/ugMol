@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -34,6 +35,7 @@ class ActivityLog
     public function getActivity(): LengthAwarePaginator
     {
         return DB::table($this->table)
+            ->latest('time')
             ->paginate('10', ['*'],'page');
     }
 
@@ -48,6 +50,17 @@ class ActivityLog
             ->where('date', '>=', $from)
             ->where('date', '<=', $to)
             ->paginate('10', ['*'],'page');
+    }
+
+    /**
+     * @return Collection
+     */
+    public function recentActivity()
+    {
+        return DB::table($this->table)
+            ->latest('time')
+            ->take('10')
+            ->get();
     }
 
 }

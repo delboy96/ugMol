@@ -45,7 +45,19 @@ Route::post('/contact', 'Api\ContactController@send')->name('contact-email');
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 
     Route::get('/dashboard', function () {
-        return view('admin.index');
+        $totalUsers = new \App\Models\User();
+        $totalArticles = new \App\Models\Article();
+        $totalNews = new \App\Models\Article();
+        $totalPosts = new \App\Models\Post();
+        $activity = new \App\Models\ActivityLog();
+
+        return view('admin.index', [
+            'totalUsers' => $totalUsers->totalUsers(),
+            'totalArticles' => $totalArticles->totalArticles(),
+            'totalNews' => $totalNews->totalNews(),
+            'totalPosts' => $totalPosts->totalPosts(),
+            'activities' => $activity->recentActivity()
+        ]);
     })->name('dashboard');
 
     // Korisnici

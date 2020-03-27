@@ -226,17 +226,26 @@ class Article
         return DB::table($this->table)->delete($id);
     }
 
-//    /**
-//     * @return Collection
-//     */
-//    public function latest(): Collection
-//    {
-//        return DB::table($this->table)
-////            ->join('images', 'posts.image_id', '=', 'images.id')
-////            ->select('posts.*', 'images.path', 'images.id')
-//            ->latest('posts.datum')
-//            ->get()->take(3);
-//    }
+    /**
+     * @return int
+     */
+    public function totalArticles()
+    {
+        return DB::table($this->table)
+            ->where('type', '=', 'članak')
+            ->count();
+    }
+
+    /**
+     * @return int
+     */
+    public function totalNews()
+    {
+        return DB::table($this->table)
+            ->where('type', '=', 'vest')
+            ->count();
+    }
+
 
 
 }

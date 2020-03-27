@@ -1,7 +1,6 @@
 @extends('layoutForms')
 
 @section('content')
-{{--    {{ dump($errors) }}--}}
     <div class="wrap-contact100">
         <form id="regForma" action="{{ route('register') }}" method="POST" class="contact100-form validate-form">
             @csrf
@@ -46,7 +45,8 @@
 
             <label class="label-input100" for="email">Ponovo Unesite Vašu Šifru *</label>
             <div class="wrap-input100 validate-input" data-validate="Ponovite vašu šifru">
-                <label for="repass"></label><input id="repass" class="input100" type="password" name="password_confirmation" placeholder="Šifra">
+                <label for="repass"></label><input id="repass" class="input100" type="password"
+                                                   name="password_confirmation" placeholder="Šifra">
                 <span class="focus-input100"></span>
                 @error('repassword')
                 <p class="text-danger text-center">{{ $message }}</p>
@@ -62,25 +62,32 @@
             <div id="errorsCon">
 
             </div>
-
         </form>
-
-        <div class="contact100-more flex-col-c-m" style="background-image: url('{{asset("assets/img/zima.jpg")}}');">
-            <div class="flex-w size1 p-b-47">
-
-                <div class="flex-col size2">
+        <div class="contact100-more" style="background-image: url('{{asset("assets/img/zima.jpg")}}');">
+            <div id='nav-menu' class=" box_1170 main-menu">
+                <div class="row align-items-center justify-content-center d-flex">
+                    <nav id="nav-menu-container">
+                        <ul class="nav-menu">
+                            <li class="menu-active"><a href="{{route('index')}}">Početna</a></li>
+                            <li><a href="{{route('contact')}}">Kontakt</a></li>
+                            <li><a href="{{route('login')}}">Login</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div style="margin-top: 43%" class="flex-col-c-m">
+                <div class="dis-flex size1 p-b-47">
+                    <div class="flex-col size2">
 						<span class="txt1 p-b-20">
 							Već registrovani?
 						</span>
-
-                    <span class="txt3">
+                        <span class="txt3">
 							<a href="/login" class="genric-btn info-border circle"><h2
                                     style="color:#00adf0">Ulogujte se</h2></a>
 						</span>
-
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
 @endsection

@@ -45,7 +45,7 @@
 
     <div class="search_input" id="search_input_box">
         <div class="container box_1170">
-            <form action="{{route('search')}}" method="POST" class="d-flex justify-content-between">
+            <form action="{{ route('search') }}" method="GET" class="d-flex justify-content-between">
                 @csrf
                 <input type="text" name="search" class="form-control" id="search_input" placeholder="Search Here"/>
                 <input name="previousSearch" type="hidden" value="{{ $query ?? null }}"/>

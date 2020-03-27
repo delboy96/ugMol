@@ -28,6 +28,15 @@
                     </div>
                 </div>
             </div>
+            @if(session('message'))
+                <div id="poruka" class="alert alert-success">
+                    <p class="text-center">{{ session('message') }}</p>
+                </div>
+            @elseif(session('error'))
+                <div id="poruka" class="alert alert-danger">
+                    <p class="text-center">{{ session('error') }}</p>
+                </div>
+            @endif
             <nav style="margin-top: 20px;" class="blog-pagination justify-content-center d-flex">
                 <ul class="pagination">
                     @if ($activities->lastPage() > 1)

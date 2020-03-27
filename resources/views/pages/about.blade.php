@@ -11,14 +11,13 @@
                         <img src="{{asset('assets/img/about.jpg')}}" alt="about" class="img-fluid">
                     </div>
                     <div class="col-md-9 mt-sm-20">
-                        <p>This is supposed to be my short bio. No much to say,
-                            so it should be something like: Student of ICT College in Belgrade,
+                        <p>Student of ICT College in Belgrade,
                             unemployed, currently living in Belgrade.
                             This project is only for educational purposes and for Web Programiranje PHP2 subject.
                         </p>
-                        <p>
+                        <p style=" margin-top: 3em">
                             <br/> <br/> <br/>
-                            <a href="#"><h4>Dokumentacija</h4></a>
+                            <a  href="{{asset('dokumentacija ugMol.pdf')}}"><h4>Dokumentacija</h4></a>
                         </p>
                     </div>
                 </div>

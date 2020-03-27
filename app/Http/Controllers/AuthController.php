@@ -99,7 +99,6 @@ class AuthController extends Controller
         return view('admin.activity', $this->data);
     }
 
-
     /**
      * @param Request $request
      * @return Factory|RedirectResponse|View
@@ -113,7 +112,6 @@ class AuthController extends Controller
 
         try {
             $this->data['activities'] = $activity->activityDate($from, $to);
-//            dd( $this->data['activities']);
             if( $this->data['activities'] ){
                 return view('admin.activityFilter', $this->data);
             }else{
@@ -122,10 +120,9 @@ class AuthController extends Controller
 
         } catch (QueryException $e) {
             Log::error($e->getMessage());
-            return redirect()->back()->with("error", "Nema rezultata za određene datume.");
+            return redirect(route('activity.filter'))->back()->with("error", "Nema rezultata za određene datume.");
         }
 
     }
-
 
 }

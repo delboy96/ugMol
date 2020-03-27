@@ -23,14 +23,9 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="main_blog_details">
-                        <img class="img-fluid" src="../{{$post->img_path}}" alt="{{$post->title}}">
+                        <img class="img-fluid" src="{{asset($post->img)}}" alt="{{$post->title}}">
                         <div class="user_details">
                             <div class="float-right">
-{{--                                <div class="media">--}}
-{{--                                    <div class="media-body">--}}
-{{--                                        <p>{{$post->datum}}</p>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                             </div>
                         </div>
                         <p>{{$post->body}}</p>
@@ -44,7 +39,6 @@
                             <div class="news_socail ml-auto">
                                 <a href="https://www.facebook.com/%D0%A3%D0%93-%D0%9C%D0%BE%D0%BB-%D1%83-%D1%81%D1%80%D1%86%D1%83-UG-Mol-u-srcu-777149702445225/"><i class="fa fa-facebook"></i></a>
                                 <a href="https://www.youtube.com/channel/UCs94K5Z3BnMgu8z7nE8uIIw/featured"><i class="fa fa-youtube"></i></a>
-
                             </div>
                         </div>
                     </div>

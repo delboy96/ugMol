@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
 use App\Mail\ContactMail;
+use ErrorException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\{Log, Mail};
@@ -21,16 +22,17 @@ class ContactController extends Controller
     {
         try {
             $data = $request->validated();
-            dd($data);
-            Log::info($data);
             Mail::to(getenv('ADMINISTRATOR_EMAIL'))->send(
                 new ContactMail(
                     $data['name'],
                     $data['surname'],
                     $data['email'],
-                    $data['message'])
+                    $data['body']
+                )
             );
             return redirect()->back()->with(['message' => 'Uspešno poslato.']);
+        } catch (ErrorException $exception) {
+            dd($exception);
         } catch (QueryException $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with(['error' => 'Serverska greška.']);

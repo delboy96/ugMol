@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\DB;
 
 class ArticlesTableSeeder extends Seeder
 {
+    public const DEFAULT_PICTURE = 'assets/img/zima.jpg';
+
     /**
      * Run the database seeds.
      *
@@ -13,12 +15,12 @@ class ArticlesTableSeeder extends Seeder
      */
     public function run(\Faker\Generator $generator)
     {
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             DB::table('articles')->insert([
-                'title' => $generator->title,
+                'title' => $generator->sentence($nbWords = 2, $variableNbWords = true),
                 'body' => $generator->text,
-                'img' => $generator->imageUrl(),
-                'type' => $generator->boolean ? 'članak' : 'vest',
+                'img' => self::DEFAULT_PICTURE,
+                'type' => 'članak',
                 'date' => now()
             ]);
         }

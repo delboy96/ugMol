@@ -29,7 +29,7 @@ class ContactMail extends Mailable
     /**
      * @var string
      */
-    private $message;
+    private $body;
 
     /**
      * Create a new message instance.
@@ -37,15 +37,14 @@ class ContactMail extends Mailable
      * @param string $name
      * @param string $surname
      * @param string $email
-     * @param string $message
+     * @param string $body
      */
-    public function __construct(string $name, string $surname, string $email, string $message)
+    public function __construct(string $name, string $surname, string $email, string $body)
     {
         $this->name = $name;
         $this->surname = $surname;
         $this->email = $email;
-        $this->message = $message;
-        Log::info('usao u mail');
+        $this->body = $body;
     }
 
     /**
@@ -59,7 +58,7 @@ class ContactMail extends Mailable
             'name' => $this->name,
             'surname' => $this->surname,
             'email' => $this->email,
-            'message' => $this->message,
+            'body' => $this->body
         ]);
     }
 }
